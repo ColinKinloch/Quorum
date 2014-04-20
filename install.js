@@ -22,7 +22,7 @@ prompt.get({
 }, function(err, result) {
 	if(result.skip === 'yes')
 	{
-		console.log('I will NOT start your RDBM for you!');
+		console.log('I won\'t start your RDBM for you!');
 		prompt.get(
 		{
 			properties:
@@ -49,6 +49,10 @@ prompt.get({
 		{
 			createTables(result.host, result.user, result.pass);
 		});
+	}
+	else
+	{
+		console.log('I will not touch your RDBM, don\'t worry.');
 	}
 });
 
