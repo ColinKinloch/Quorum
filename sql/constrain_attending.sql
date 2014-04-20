@@ -1,0 +1,9 @@
+-- Attending Constraints
+ALTER TABLE attending
+	ADD CONSTRAINT attending_member_fk
+		FOREIGN KEY (member)
+		REFERENCES member (uid);
+ALTER TABLE attending
+	ADD CONSTRAINT attending_event_fk
+		FOREIGN KEY (event)
+		REFERENCES event (eid);

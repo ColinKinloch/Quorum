@@ -271,6 +271,20 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        shell: {
+            mysql: {
+                command: 'echo \'You should start mysqld, I don\'t know how to kill it.\'',
+                options: {
+                    async: true,
+                    stdout: true,
+                    stderr: false,
+                    failOnError: true,
+                    execOptions: {
+                        cwd: '.'
+                    }
+                }
+            }
         }
     });
 
@@ -285,7 +299,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'open:server', 'connect:dist:keepalive']);
+            return grunt.task.run(['build', 'open:server', 'shell:mysql', 'connect:dist:keepalive']);
         }
 
         if (target === 'test') {
@@ -307,6 +321,7 @@ module.exports = function (grunt) {
             'compass:server',
             'connect:livereload',
             'open:server',
+            'shell:mysql',
             'watch:livereload'
         ]);
     });

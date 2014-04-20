@@ -1,0 +1,9 @@
+-- Promote Constraints
+ALTER TABLE promote
+	ADD CONSTRAINT promote_promotion_fk
+		FOREIGN KEY (promotion)
+		REFERENCES promotion (pid);
+ALTER TABLE promote
+	ADD CONSTRAINT promote_event_fk
+		FOREIGN KEY (event)
+		REFERENCES event (eid);

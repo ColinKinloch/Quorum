@@ -1,0 +1,9 @@
+-- Venue Table
+CREATE TABLE IF NOT EXISTS venue(
+	vid INTEGER PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+	type VARCHAR(50) NOT NULL,
+	address VARCHAR(250),
+	description VARCHAR(10000),
+	owner INTEGER -- FOREIGN venueowner.uid
+);

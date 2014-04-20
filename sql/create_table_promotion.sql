@@ -1,0 +1,5 @@
+-- Promotion Table
+CREATE TABLE IF NOT EXISTS promotion(
+	pid INTEGER PRIMARY KEY AUTO_INCREMENT,
+	details VARCHAR(250) NOT NULL
+);

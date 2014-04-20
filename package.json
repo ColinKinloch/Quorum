@@ -1,8 +1,16 @@
 {
   "name": "Quorum",
   "version": "0.0.0",
+  "description": "The party system of the future",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.com/Trufforce/Quorum.git"
+  },
   "dependencies": {
-    "express": "^4.0.0"
+    "express": "^4.0.0",
+    "restify": "^2.7.0",
+    "morgan": "^1.0.0",
+    "mysql": "^2.1.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -27,12 +35,16 @@
     "load-grunt-tasks": "~0.3.0",
     "connect-livereload": "~0.3.2",
     "time-grunt": "~0.2.8",
-    "jshint-stylish": "~0.1.5"
+    "jshint-stylish": "~0.1.5",
+    "grunt-shell-spawn": "^0.3.0",
+    "mysql": "^2.1.1",
+    "prompt": "^0.2.12"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "start": "server.js"
+    "start": "./server.js",
+    "install": "./install.js"
   }
 }

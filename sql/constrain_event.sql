@@ -1,0 +1,9 @@
+-- Event Constraints
+ALTER TABLE event
+	ADD CONSTRAINT event_venue_fk
+		FOREIGN KEY (venue)
+		REFERENCES venue (vid);
+ALTER TABLE event
+	ADD CONSTRAINT event_owner_fk
+		FOREIGN KEY (owner)
+		REFERENCES user (uid);
