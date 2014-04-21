@@ -2,15 +2,16 @@
   "name": "Quorum",
   "version": "0.0.0",
   "description": "The party system of the future",
+  "main": "./lib/quorum.js",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.com/Trufforce/Quorum.git"
+    "url": "https://github.com/ColinKinloch/Quorum.git"
   },
   "dependencies": {
     "express": "^4.0.0",
-    "restify": "^2.7.0",
     "morgan": "^1.0.0",
-    "mysql": "^2.1.1"
+    "body-parser": "^1.0.2",
+    "knex": "^0.5.13"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -38,7 +39,8 @@
     "jshint-stylish": "~0.1.5",
     "grunt-shell-spawn": "^0.3.0",
     "mysql": "^2.1.1",
-    "prompt": "^0.2.12"
+    "prompt": "^0.2.12",
+    "grunt-express-server": "^0.4.13"
   },
   "engines": {
     "node": ">=0.10.0"

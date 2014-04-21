@@ -58,6 +58,18 @@ module.exports = function (grunt) {
             test: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
                 tasks: ['test:true']
+            },
+            express: {
+                files: [
+                    'server.js',
+                    'quorum.js',
+                    'lib/**/*.js'
+                ],
+                tasks: [ 'express:dev' ],
+                options: {
+                    spawn: false,
+                    interval: 1000
+                }
             }
         },
         connect: {
@@ -285,6 +297,16 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        express: {
+            options: {
+                port: SERVER_PORT
+            },
+            dev: {
+                options: {
+                    script: './server.js'
+                }
+            }
         }
     });
 
@@ -308,7 +330,7 @@ module.exports = function (grunt) {
                 'createDefaultTemplate',
                 'jst',
                 'compass:server',
-                'connect:test',
+                //'connect:test',
                 'open:test',
                 'watch:livereload'
             ]);
@@ -319,10 +341,12 @@ module.exports = function (grunt) {
             'createDefaultTemplate',
             'jst',
             'compass:server',
-            'connect:livereload',
-            'open:server',
+            'express:dev',
+            //'connect:livereload',
+            //'open:server',
             'shell:mysql',
-            'watch:livereload'
+            'watch',
+            'watch:livereload',
         ]);
     });
 

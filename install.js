@@ -13,8 +13,7 @@ prompt.start();
 prompt.get({
 	properties: {
 		skip: {
-			message: "Setup SQL tables?",
-			description: "Setup SQL Database? [Y/n]",
+			message: "Initialize database?",
 			validator: /y[es]*|n[o]?/,
 			default: 'yes'
 		}
