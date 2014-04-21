@@ -1,4 +1,4 @@
 -- Quorum Database
-DROP SCHEMA quorum;
+DROP SCHEMA IF EXISTS quorum;
 CREATE SCHEMA IF NOT EXISTS quorum;
 USE quorum;
