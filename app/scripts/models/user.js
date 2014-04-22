@@ -8,7 +8,7 @@ define([
 	var UserModel = Backbone.Model.extend({
 		url: '',
 		initialize: function(attrs) {
-			this.id = attributes.uid;
+			this.id = attrs.uid;
 		},
 		defaults: {
 			uid: undefined,

@@ -77,19 +77,7 @@ app.use('/api', router);
 app.use(function(req, res)
 {
 	res.status(404);
-	
-	if(req.accepts('html'))
-	{
-		res.sendfile('app/404.html');
-	}
-	else if(req.accepts('json'))
-	{
-		res.json({error:404});
-	}
-	else
-	{
-		res.send('There\'s no file!');
-	}
+	res.sendfile('app/index.html');
 });
 app.listen(port, host, function(){
 	console.log('Quorum server listening at:', host+':'+port);
