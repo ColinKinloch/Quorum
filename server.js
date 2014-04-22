@@ -3,6 +3,8 @@
 var host = '127.0.0.1';
 var port = process.env.PORT||9000;
 
+var env = process.env.NODE_ENV || 'development';
+
 var db = {
 	host: 'localhost',
 	user: 'node',
@@ -13,9 +15,12 @@ var db = {
 
 var quorum = require('./quorum');
 
+var path = require('path');
+
 var express = require('express'),
 		morgan = require('morgan'),
-		bodyParser = require('body-parser');
+		bodyParser = require('body-parser'),
+		methodOverride = require('method-override');
 
 var dbConn = quorum.db.createConnection(db);
 
@@ -31,25 +36,61 @@ var app = express();
 var router = express.Router();
 
 app.use(bodyParser());
-app.use(morgan('dev'));
-app.use(express.static(__dirname + '/.tmp'));
-app.use(express.static(__dirname + '/app'));
+app.use(methodOverride());
+
+if('development' == env)
+{
+	app.use(morgan('dev'));
+	app.use(express.static(path.resolve('.tmp')));
+	app.use(express.static(path.resolve('app')));
+}
+else if('production' == env)
+{
+	app.use(morgan());
+	app.use(express.static(path.resolve('dist')));
+}
+
 router.route('/user')
 	.get(quorum.rest.user.get)
 	.post(quorum.rest.user.post)
+	.put(quorum.rest.user.put);
 router.route('/user/:id')
 	.get(quorum.rest.user.id.get)
 	.put(quorum.updateUserById);
+router.route('/user/:id/event')
+	//.get(quorum.rest.user.event.get);
 router.route('/member')
 	.get(quorum.rest.member.get)
 	.post(quorum.rest.member.post);
 router.route('/member/:id')
 	.get(quorum.rest.member.id.get)
 	.put(quorum.updateMemberByEmail);
-//app.use('/add', quorum.getVerified.bind(null, 'colin@bum.com', 'garple', function(res){console.log('ver:', res)}));
-//app.use(restApp.bodyParser());
+router.use(function(req, res)
+{
+	res.status(404);
+	res.json({error:404});
+});
 
 app.use('/api', router);
+
+// 404
+app.use(function(req, res)
+{
+	res.status(404);
+	
+	if(req.accepts('html'))
+	{
+		res.sendfile('app/404.html');
+	}
+	else if(req.accepts('json'))
+	{
+		res.json({error:404});
+	}
+	else
+	{
+		res.send('There\'s no file!');
+	}
+});
 app.listen(port, host, function(){
 	console.log('Quorum server listening at:', host+':'+port);
 });

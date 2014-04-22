@@ -68,7 +68,7 @@ module.exports = function (grunt) {
                 tasks: [ 'express:dev' ],
                 options: {
                     spawn: false,
-                    interval: 1000
+                    livereload: true
                 }
             }
         },
@@ -133,7 +133,8 @@ module.exports = function (grunt) {
                 'Gruntfile.js',
                 '<%= yeoman.app %>/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
+                'test/spec/{,*/}*.js',
+                'lib/**/*.js'
             ]
         },
         mocha: {
@@ -345,7 +346,8 @@ module.exports = function (grunt) {
             //'connect:livereload',
             //'open:server',
             'shell:mysql',
-            'watch',
+            //'watch',
+            //'watch:express'
             'watch:livereload',
         ]);
     });

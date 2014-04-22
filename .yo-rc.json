@@ -1,7 +1,7 @@
 {
   "generator-backbone": {
     "appPath": "app",
-    "appName": "Web",
+    "appName": "Quorum",
     "coffee": false,
     "testFramework": "mocha",
     "templateFramework": "lodash",
