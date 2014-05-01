@@ -6,7 +6,7 @@ define([
 ], function (_, Backbone) {
 	'use strict';
 	var UserModel = Backbone.Model.extend({
-		url: '',
+		urlRoot: '/api/user',
 		initialize: function(attrs) {
 			this.id = attrs.uid;
 		},

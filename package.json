@@ -41,7 +41,8 @@
     "grunt-shell-spawn": "^0.3.0",
     "mysql": "^2.1.1",
     "prompt": "^0.2.12",
-    "grunt-express-server": "^0.4.13"
+    "grunt-express-server": "^0.4.13",
+    "knex": "^0.5.13"
   },
   "engines": {
     "node": ">=0.10.0"

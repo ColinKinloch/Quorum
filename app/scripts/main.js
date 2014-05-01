@@ -1,7 +1,9 @@
 /*global require*/
 'use strict';
 
+
 require.config({
+	baseUrl: '//localhost:9000/scripts',
 	shim: {
 		underscore: {
 			exports: '_'
@@ -30,18 +32,13 @@ require.config({
 require([
 	'jquery',
 	'backbone',
-	'collections/user',
-	'views/user'
-], function ($, Backbone, UserCollection, UserView) {
-	Backbone.history.start();
+	'routes/main',
+	'collections/member',
+	'views/usercollection'
+], function ($, Backbone, MainRouter, UserCollection, UserCollectionView) {
+	Backbone.history.start({pushState: true});
 	
-	var users = new UserCollection();
-	var usersView = new UserView({model: users});
+	var router = new MainRouter();
 	
-	$('#userlist').html(usersView.$el);
-	
-	users.fetch({success: function(){
-		usersView.render();
-	}});
-	console.log(users);
+	Backbone.history.loadUrl(Backbone.history.fragment);
 });

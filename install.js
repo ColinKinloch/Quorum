@@ -4,6 +4,7 @@ console.log('Quorum post-install scripts!');
 var fs = require('fs');
 var prompt = require('prompt');
 var mysql = require('mysql');
+var knex = require('knex');
 
 console.log('Setting up SQL server');
 prompt.message = "Quorum";
@@ -57,6 +58,19 @@ prompt.get({
 
 function createTables(host, user, pass)
 {
+	/*
+	var conn = knex.initialize({
+		client: 'mysql',
+		connection: {
+		host: host,
+		user: user,
+		password: pass,
+		//database: 'quorum',
+		charset: 'utf8',
+		//multipleStatements: true
+	}
+	});
+	*/
 	var conn = mysql.createConnection(
 	{
 		host: host,
@@ -73,12 +87,19 @@ function createTables(host, user, pass)
 	//Do SQL here
 	loadQueries().forEach(function(query){
 		//console.log('running:\n', query);
+		/*
+		conn.raw()
+			.then(function(){}, function(err){
+				console.log('Problem is in:\n', query);
+				throw err;
+			});
+		*/
 		conn.query(query, function(err)
 		{
 			if(err)
 			{
 				console.log('Problem is in:\n', query);
-				if(err) throw err;
+				throw err;
 			}
 		});
 	});

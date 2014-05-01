@@ -53,22 +53,37 @@ else if('production' == env)
 router.route('/user')
 	.get(quorum.rest.user.get)
 	.post(quorum.rest.user.post)
-	.put(quorum.rest.user.put);
+	.put(quorum.rest.user.put)
+	.delete(quorum.stub);
 router.route('/user/:id')
 	.get(quorum.rest.user.id.get)
-	.put(quorum.updateUserById);
+	.post(quorum.stub)
+	.put(quorum.rest.updateUserById)
+	.delete(quorum.stub);
 router.route('/user/:id/event')
-	//.get(quorum.rest.user.event.get);
+	//.get(quorum.rest.user.event.get)
+	.get(quorum.stub)
+	.post(quorum.stub)
+	.put(quorum.stub)
+	.delete(quorum.stub);
 router.route('/member')
 	.get(quorum.rest.member.get)
-	.post(quorum.rest.member.post);
+	.put(quorum.stub)
+	.post(quorum.rest.member.post)
+	.delete(quorum.stub);
 router.route('/member/:id')
 	.get(quorum.rest.member.id.get)
-	.put(quorum.updateMemberByEmail);
+	.post(quorum.stub)
+	.put(quorum.updateMemberByEmail)
+	.delete(quorum.stub);
+router.route('/venue')
+	.get(quorum.stub)
+	.post(quorum.stub)
+	.put(quorum.stub)
+	.delete(quorum.stub);
 router.use(function(req, res)
 {
-	res.status(404);
-	res.json({error:404});
+	res.json(404, {error:404});
 });
 
 app.use('/api', router);
@@ -76,8 +91,7 @@ app.use('/api', router);
 // 404
 app.use(function(req, res)
 {
-	res.status(404);
-	res.sendfile('app/index.html');
+	res.status(404).sendfile('app/index.html');
 });
 app.listen(port, host, function(){
 	console.log('Quorum server listening at:', host+':'+port);
