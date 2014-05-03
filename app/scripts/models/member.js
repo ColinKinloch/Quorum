@@ -7,8 +7,9 @@ define([
 ], function (_, Backbone, UserModel) {
 	'use strict';
 	var MemberModel = UserModel.extend({
-		url: '',
-		initialize: function() {
+		urlRoot: '/api/member',
+		initialize: function(attrs) {
+			console.log('init member');
 		},
 		defaults: {
 			nameu: null,

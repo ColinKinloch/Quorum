@@ -1,0 +1,16 @@
+<div class="row marketing">
+	<% if(message) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+	<form role="form">
+		<div class="form-group">
+			<label for="userLoginEmail">Email address</label>
+			<input type="email" class="form-control" id="userLoginEmail" placeholder="Enter email">
+		</div>
+		<div class="form-group">
+			<label for="userLoginPassword">Password</label>
+			<input type="password" class="form-control" id="userLoginPassword" placeholder="Password">
+		</div>
+		<button type="button" id="userLoginSubmit" class="btn btn-default">Log in</button>
+	</form>
+</div>

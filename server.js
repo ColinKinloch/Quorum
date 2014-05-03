@@ -20,7 +20,11 @@ var path = require('path');
 var express = require('express'),
 		morgan = require('morgan'),
 		bodyParser = require('body-parser'),
+		cookieParser = require('cookies'),
 		methodOverride = require('method-override');
+
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 
 var dbConn = quorum.db.createConnection(db);
 
@@ -36,6 +40,7 @@ var app = express();
 var router = express.Router();
 
 app.use(bodyParser());
+app.use(cookieParser.express());
 app.use(methodOverride());
 
 if('development' == env)
@@ -59,7 +64,7 @@ router.route('/user/:id')
 	.get(quorum.rest.user.id.get)
 	.post(quorum.stub)
 	.put(quorum.rest.updateUserById)
-	.delete(quorum.stub);
+	.delete(quorum.rest.user.id.del);
 router.route('/user/:id/event')
 	//.get(quorum.rest.user.event.get)
 	.get(quorum.stub)
@@ -86,6 +91,8 @@ router.use(function(req, res)
 	res.json(404, {error:404});
 });
 
+app.post('/login/user', quorum.auth.userToken)
+app.use('/api', expressJwt({secret: quorum.auth.secret}));
 app.use('/api', router);
 
 // 404

@@ -33,12 +33,16 @@ require([
 	'jquery',
 	'backbone',
 	'routes/main',
-	'collections/member',
-	'views/usercollection'
-], function ($, Backbone, MainRouter, UserCollection, UserCollectionView) {
+	'routes/register',
+	'routes/admin',
+	'auth',
+	'bootstrap'
+], function ($, Backbone, MainRouter, RegisterRouter, AdminRouter) {
 	Backbone.history.start({pushState: true});
 	
 	var router = new MainRouter();
+	var registerRouter = new RegisterRouter();
+	var adminRouter = new AdminRouter();
 	
 	Backbone.history.loadUrl(Backbone.history.fragment);
 });

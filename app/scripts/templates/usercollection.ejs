@@ -1,3 +1,37 @@
-<ul class="user-list">
-	hloo
-</ul>
+<table class="table striped" id="user-table">
+	<thead>
+		<tr>
+			<th>Email</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= users %>
+	</tbody>
+</table>
+<form class="form-inline">
+	<div class="form-group">
+		<label class="sr-only" for="userInputEmail">Email</label>
+		<input type="email" class="form-control" id="userInputEmail" placeholder="Email">
+	</div>
+	<div class="form-group">
+		<label class="sr-only" for="userInputNameF">First Name</label>
+		<input type="name" class="form-control" id="userInputNameF" placeholder="First Name">
+	</div>
+	<div class="form-group">
+		<label class="sr-only" for="userInputNameL">Last Name</label>
+		<input type="name" class="form-control" id="userInputNameL" placeholder="Last Name">
+	</div>
+	<div class="form-group">
+		<label class="sr-only" for="userInputPassword">Password</label>
+		<input type="password" class="form-control" id="userInputPassword" placeholder="Password">
+	</div>
+	<div class="form-group">
+		<button type="button" id="userInputAdd" class="btn btn-default">Add</button>
+	</div>
+</form>
+
+<a class="btn btn-danger" id="userInputCancel">Cancel</a>
+<a class="btn btn-default" id="userInputCommit">Submit</a>
