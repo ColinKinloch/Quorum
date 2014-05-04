@@ -37,7 +37,9 @@ dbConn.connect(function(err)
 */
 
 var app = express();
-var router = express.Router();
+var publicRouter = express.Router();
+var memberRouter = express.Router();
+var adminRouter = express.Router();
 
 app.use(bodyParser());
 app.use(cookieParser.express());
@@ -55,45 +57,51 @@ else if('production' == env)
 	app.use(express.static(path.resolve('dist')));
 }
 
-router.route('/user')
-	.get(quorum.rest.user.get)
+publicRouter.route('/user')
 	.post(quorum.rest.user.post)
+publicRouter.route('/member')
+	.post(quorum.rest.member.post)
+
+memberRouter.route('/user')
+	.get(quorum.rest.user.get)
 	.put(quorum.rest.user.put)
 	.delete(quorum.stub);
-router.route('/user/:id')
+memberRouter.route('/user/:id')
 	.get(quorum.rest.user.id.get)
 	.post(quorum.stub)
 	.put(quorum.rest.updateUserById)
 	.delete(quorum.rest.user.id.del);
-router.route('/user/:id/event')
+memberRouter.route('/user/:id/event')
 	//.get(quorum.rest.user.event.get)
-	.get(quorum.stub)
 	.post(quorum.stub)
+	.get(quorum.stub)
 	.put(quorum.stub)
 	.delete(quorum.stub);
-router.route('/member')
+memberRouter.route('/member')
 	.get(quorum.rest.member.get)
 	.put(quorum.stub)
-	.post(quorum.rest.member.post)
 	.delete(quorum.stub);
-router.route('/member/:id')
+memberRouter.route('/member/:id')
 	.get(quorum.rest.member.id.get)
 	.post(quorum.stub)
 	.put(quorum.updateMemberByEmail)
 	.delete(quorum.stub);
-router.route('/venue')
+memberRouter.route('/venue')
 	.get(quorum.stub)
 	.post(quorum.stub)
 	.put(quorum.stub)
 	.delete(quorum.stub);
-router.use(function(req, res)
+
+app.post('/login/user', quorum.auth.userToken)
+app.use('/api', publicRouter);
+app.use('/api', expressJwt({audience:'member', secret: quorum.auth.secret}));
+app.use('/api', memberRouter);
+app.use('/api', expressJwt({audience:'admin', secret: quorum.auth.secret}));
+app.use('/api', adminRouter);
+app.use('/api', function(req, res)
 {
 	res.json(404, {error:404});
 });
-
-app.post('/login/user', quorum.auth.userToken)
-app.use('/api', expressJwt({secret: quorum.auth.secret}));
-app.use('/api', router);
 
 // 404
 app.use(function(req, res)

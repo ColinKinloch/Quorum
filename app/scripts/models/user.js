@@ -17,6 +17,7 @@ define([
 		defaults: {
 			//uid: undefined,
 			email: undefined,
+			password: undefined,
 			namef: undefined,
 			namel: undefined
 		},

@@ -25,8 +25,23 @@
 			<div class="header">
 				<ul class="nav nav-pills pull-right">
 					<li id="home-but"><a href="/">Home</a></li>
-					<li id="user-but"><a href="/user">Users</a></li>
-					<li id="login-but"><a href="/login">Log In</a></li>
+					<li class="btn-group">
+						<a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							Admin <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li id="user-but"><a href="/user">Users</a></li>
+						</ul>
+					</li>
+					<li class="btn-group">
+						<a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							Log <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li id="login-but"><a href="/login">In</a></li>
+							<li><a href="/logout">Out</a></li>
+						</ul>
+					</li>
 					<li class="btn-group">
 						<a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							Register <span class="caret"></span>
@@ -45,7 +60,7 @@
 			</div>
 			
 			<div class="footer">
-				<p>♥ from the Yeoman team</p>
+				<p>Quorum - it's like a party in my mouth and everyone's invited.</p>
 			</div>
 			
 			
