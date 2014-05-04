@@ -5,7 +5,7 @@ define([
 	'backbone',
 	'routes/admin',
 	'collections/user',
-	'views/usercollection',
+	'views/table/usercollection',
 	'views/login',
 	'text!templates/search.ejs',
 	'text!templates/pages/home.ejs',
@@ -19,7 +19,7 @@ define([
 	{
 		$('.header .nav li').removeClass('active');
 		$('.header .nav '+el).addClass('active');
-	}
+	};
 	
 	var MainRouter = Backbone.Router.extend({
 		el: '#main',
@@ -37,7 +37,7 @@ define([
 			console.log('hi');
 		},
 		login: function() {
-			menuSet('#login-but');
+			menuSet('#log-in-but');
 			var loginView = new LoginView({el: '#main'});
 			//$(this.el).html(_.template(LoginTemplate, {message: undefined}));
 		},
@@ -45,10 +45,10 @@ define([
 			localStorage.removeItem('token');
 			localStorage.removeItem('password');
 			localStorage.removeItem('email');
-			this.navigate('/');
+			this.navigate('', {trigger: true});
 		},
 		user: function() {
-			menuSet('#user-but');
+			menuSet('#admin-user-but');
 			$(this.el).html(_.template(UserTemplate));
 			var users = new UserCollection();
 			var usersView = new UserCollectionView({collection: users, el: '#user-table'});

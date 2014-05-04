@@ -4,7 +4,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'views/user',
+	'views/table/user',
 	'text!templates/usercollection.ejs'
 ], function ($, _, Backbone, UserView, TemplateText) {
 	'use strict';
@@ -84,6 +84,7 @@ define([
 		},
 		deleteUser: function(e) {
 			var id = $(e.currentTarget).parent().parent().data('id');
+			Backbone.sync('delete', this.collection.get(id));
 			this.collection.get(id).destroy();
 			//this.collection.remove(id);
 			console.log('deleted user from collection', id);

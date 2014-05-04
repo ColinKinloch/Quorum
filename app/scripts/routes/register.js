@@ -4,27 +4,38 @@ define([
 	'jquery',
 	'backbone',
 	'views/register/member',
+	'views/register/venown',
 	'text!templates/pages/register/member.ejs',
-	'text!templates/pages/register/comsub.ejs',
-	'text!templates/pages/register/venown.ejs'
-], function ($, Backbone, RegMemView, RegMemTemplate, RegComSubTemplate, RegVenOwnTemplate) {
+	'text!templates/pages/register/comsub.ejs'
+], function ($, Backbone, RegMemView, RegVenownView, RegMemTemplate, RegComSubTemplate) {
 	'use strict';
+	
+	var menuSet = function(el)
+	{
+		$('.header .nav li').removeClass('active');
+		$('.header .nav '+el).addClass('active');
+	};
+	
 	var AdminRouter = Backbone.Router.extend({
 		el:'#main',
 		routes: {
-			'register/member': 'registerMember',
-			'register/comsub': 'registerComSub',
-			'register/venown': 'registerVenOwn'
+			'register/member': 'member',
+			'register/comsub': 'comsub',
+			'register/venown': 'venown'
 		},
-		registerMember: function() {
+		member: function() {
+			menuSet('#register-member-but');
 			var regMemView = new RegMemView({el: '#main'});
 			//$(this.el).html(_.template(RegMemView));
 		},
-		registerComSub: function() {
+		comsub: function() {
+			menuSet('#register-comsub-but');
 			$(this.el).html(_.template(RegComSubTemplate));
 		},
-		registerVenOwn: function() {
-			$(this.el).html(_.template(RegVenOwnTemplate));
+		venown: function() {
+			menuSet('#register-venown-but');
+			var regVenownView = new RegVenownView({el: '#main'});
+			//$(this.el).html(_.template(RegVenOwnTemplate));
 		}
 	});
 	return AdminRouter;

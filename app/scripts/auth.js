@@ -25,7 +25,7 @@ define([
 				Auth.setAuthToken();
 				console.log('token', localStorage.getItem('token'));
 				xhr.setRequestHeader('Authorization', 'Bearer '+localStorage.getItem('token'));
-			}
+			};
 		}
 	});
 	

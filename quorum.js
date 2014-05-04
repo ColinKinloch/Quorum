@@ -56,5 +56,5 @@ exports.updateMemberByEmail = function(req, res)
 
 exports.stub = function(req, res)
 {
-	res.json(501, {error: 501, TODO: 'this'});
+	res.json(501, {error: 501, TODO: this});
 };

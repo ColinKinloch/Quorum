@@ -58,19 +58,23 @@ else if('production' == env)
 }
 
 publicRouter.route('/user')
-	.post(quorum.rest.user.post)
+	.post(quorum.rest.user.create);
 publicRouter.route('/member')
-	.post(quorum.rest.member.post)
+	.post(quorum.rest.member.create);
+publicRouter.route('/venown')
+	.post(quorum.rest.venown.create);
+publicRouter.route('/event')
+	.get(quorum.rest.event.query)
 
 memberRouter.route('/user')
-	.get(quorum.rest.user.get)
-	.put(quorum.rest.user.put)
+	.get(quorum.rest.user.read)
+	.put(quorum.rest.user.update)
 	.delete(quorum.stub);
 memberRouter.route('/user/:id')
-	.get(quorum.rest.user.id.get)
+	.get(quorum.rest.user.id.read)
 	.post(quorum.stub)
-	.put(quorum.rest.updateUserById)
-	.delete(quorum.rest.user.id.del);
+	.put(quorum.rest.user.id.update)
+	.delete(quorum.rest.user.id.delete);
 memberRouter.route('/user/:id/event')
 	//.get(quorum.rest.user.event.get)
 	.post(quorum.stub)
@@ -78,11 +82,11 @@ memberRouter.route('/user/:id/event')
 	.put(quorum.stub)
 	.delete(quorum.stub);
 memberRouter.route('/member')
-	.get(quorum.rest.member.get)
+	.get(quorum.rest.member.read)
 	.put(quorum.stub)
 	.delete(quorum.stub);
 memberRouter.route('/member/:id')
-	.get(quorum.rest.member.id.get)
+	.get(quorum.rest.member.id.read)
 	.post(quorum.stub)
 	.put(quorum.updateMemberByEmail)
 	.delete(quorum.stub);

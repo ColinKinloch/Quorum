@@ -6,22 +6,19 @@ define([
 	'models/user'
 ], function (_, Backbone, UserModel) {
 	'use strict';
-	var MemberModel = UserModel.extend({
-		urlRoot: '/api/member',
+	var VenownModel = UserModel.extend({
+		urlRoot: '/api/venown',
 		/*url: function(){
 			if(this.isNew()) return this.urlRoot;
 			return this.urlRoot+'/'+this.id;
 		},*/
 		initialize: function(attrs) {
-			console.log('init member');
-			if(attrs)
-			{
-				this.id = attrs.uid;
-			}
+			console.log('init venown');
 		},
 		defaults: {
 			nameu: null,
-			gold: null
+			phone: null,
+			address: null,
 		},
 		validate: function(attrs, options) {
 		},
@@ -29,5 +26,5 @@ define([
 			return response;
 		}
 	});
-	return MemberModel;
+	return VenownModel;
 });
