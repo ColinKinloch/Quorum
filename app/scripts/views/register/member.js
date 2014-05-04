@@ -8,7 +8,7 @@ define([
 	'text!templates/pages/register/member.ejs',
 ], function ($, _, Backbone, MemberModel, TemplateText) {
 	'use strict';
-	var UserView = Backbone.View.extend({
+	var RegMemberView = Backbone.View.extend({
 		template: _.template(TemplateText),
 		events: {
 			'click #memberRegisterSubmit': 'register'
@@ -41,5 +41,5 @@ define([
 			Backbone.sync('create', member);
 		}
 	});
-	return UserView;
+	return RegMemberView;
 });

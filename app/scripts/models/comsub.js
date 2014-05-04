@@ -6,22 +6,20 @@ define([
 	'models/user'
 ], function (_, Backbone, UserModel) {
 	'use strict';
-	var MemberModel = UserModel.extend({
-		urlRoot: '/api/member',
+	var ComsubModel = UserModel.extend({
+		urlRoot: '/api/comsub',
 		initialize: function(attrs) {
-			console.log('init member');
-			if(attrs)
-			{
-				this.id = attrs.uid;
-			}
+			console.log('init comsub');
 		},
 		defaults: {
 			nameu: null,
-			gold: null
+			company: null,
+		},
+		validate: function(attrs, options) {
 		},
 		parse: function(response, options)  {
 			return response;
 		}
 	});
-	return MemberModel;
+	return ComsubModel;
 });

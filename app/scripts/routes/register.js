@@ -5,9 +5,10 @@ define([
 	'backbone',
 	'views/register/member',
 	'views/register/venown',
-	'text!templates/pages/register/member.ejs',
-	'text!templates/pages/register/comsub.ejs'
-], function ($, Backbone, RegMemView, RegVenownView, RegMemTemplate, RegComSubTemplate) {
+	'views/register/comsub',
+	'views/register/venue',
+	'views/register/event'
+], function ($, Backbone, RegMemView, RegVenownView, RegComsubView, RegVenueView, RegEventView) {
 	'use strict';
 	
 	var menuSet = function(el)
@@ -21,7 +22,9 @@ define([
 		routes: {
 			'register/member': 'member',
 			'register/comsub': 'comsub',
-			'register/venown': 'venown'
+			'register/venown': 'venown',
+			'register/venue': 'venue',
+			'register/event': 'event'
 		},
 		member: function() {
 			menuSet('#register-member-but');
@@ -30,12 +33,21 @@ define([
 		},
 		comsub: function() {
 			menuSet('#register-comsub-but');
-			$(this.el).html(_.template(RegComSubTemplate));
+			var regComsubView = new RegComsubView({el: '#main'});
+			//$(this.el).html(_.template(RegComSubTemplate));
 		},
 		venown: function() {
 			menuSet('#register-venown-but');
 			var regVenownView = new RegVenownView({el: '#main'});
 			//$(this.el).html(_.template(RegVenOwnTemplate));
+		},
+		venue: function() {
+			menuSet('#register-venue-but');
+			var regVenueView = new RegVenueView({el: '#main'});
+		},
+		event: function() {
+			menuSet('#register-event-but');
+			var regEventView = new RegEventView({el: '#main'});
 		}
 	});
 	return AdminRouter;

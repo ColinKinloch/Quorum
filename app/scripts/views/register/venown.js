@@ -8,7 +8,7 @@ define([
 	'text!templates/pages/register/venown.ejs',
 ], function ($, _, Backbone, VenownModel, TemplateText) {
 	'use strict';
-	var UserView = Backbone.View.extend({
+	var RegVenownView = Backbone.View.extend({
 		template: _.template(TemplateText),
 		events: {
 			'click #venownRegisterSubmit': 'register'
@@ -41,5 +41,5 @@ define([
 			Backbone.sync('create', venown);
 		}
 	});
-	return UserView;
+	return RegVenownView;
 });

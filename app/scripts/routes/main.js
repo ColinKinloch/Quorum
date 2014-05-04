@@ -27,7 +27,6 @@ define([
 			'': 'home',
 			'login': 'login',
 			'logout': 'logout',
-			'user': 'user',
 			'*notFound': 'notFound'
 		},
 		home: function() {
@@ -46,13 +45,6 @@ define([
 			localStorage.removeItem('password');
 			localStorage.removeItem('email');
 			this.navigate('', {trigger: true});
-		},
-		user: function() {
-			menuSet('#admin-user-but');
-			$(this.el).html(_.template(UserTemplate));
-			var users = new UserCollection();
-			var usersView = new UserCollectionView({collection: users, el: '#user-table'});
-			users.fetch();
 		},
 		notFound: function(page) {
 			$(this.el).html(_.template(MissingTemplate, {page: document.location.origin+'/'+page}));

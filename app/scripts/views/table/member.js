@@ -4,7 +4,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!templates/table/user.ejs'
+	'text!templates/member.ejs'
 ], function ($, _, Backbone, TemplateText) {
 	'use strict';
 	var UserView = Backbone.View.extend({

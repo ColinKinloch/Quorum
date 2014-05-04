@@ -4,26 +4,22 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'views/table/user',
-	'text!templates/table/usercollection.ejs'
-], function ($, _, Backbone, UserView, TemplateText) {
+	//'text!templates/option',
+	'text!templates/option.ejs'
+], function ($, _, Backbone, OptionTemplate) {
 	'use strict';
-	var UserCollectionView = Backbone.View.extend({
-		template: _.template(TemplateText),
-		tagName: 'table',
+	var VenueSelectView = Backbone.View.extend({
+		//template: _.template(TemplateText),
+		tagName: 'select',
 		//id: 'user-table',
-		className: 'table striped',
+		className: 'form-control',
 		events: {
-			'click #userInputAdd': 'addUser',
-			'click .deleteUser': 'deleteUser',
-			'click #userInputCommit': 'syncUsers',
-			'click #userInputCancel': 'fetchUsers'
 		},
 		initialize: function () {
 			var that = this;
-			this._userViews = [];
-			this.collection.each(function(user) {
-				that._userViews.push(new UserView({model: user}))
+			this._venueViews = [];
+			this.collection.each(function(venue) {
+				that._venueViews.push(_template(OptionTemplate, venue))
 			});
 			
 			this.listenTo(this.collection, 'add', this.add);
@@ -40,18 +36,20 @@ define([
 			var temp = $('<div>');
 			//this.$el.empty();
 			//temp.empty();
-			_(this._userViews).each(function(view) {
+			_(this._venueViews).each(function(view) {
 				//that.$el.append(view.render().el);
-				temp.append(view.render().el);
+				temp.append(view);
 			})
-			this.$el.html(this.template({users:temp.html()}));
+			
+			console.log(temp.html());
+			this.$el.html(temp.html());
 			//this.$el.html(this.template(this.collection.toJSON()));
 		},
 		add: function () {
 			var that = this;
-			this._userViews = [];
-			this.collection.each(function(user) {
-				that._userViews.push(new UserView({model: user}))
+			this._venueViews = [];
+			this.collection.each(function(venue) {
+				that._venueViews.push(_.template(OptionTemplate, venue));
 			});
 		},
 		syncUsers: function() {
@@ -84,11 +82,11 @@ define([
 		},
 		deleteUser: function(e) {
 			var id = $(e.currentTarget).parent().parent().data('id');
-			Backbone.sync('delete', this.collection.get(id), {url: '/api/user/'+this.collection.get(id).id});
+			Backbone.sync('delete', this.collection.get(id));
 			this.collection.get(id).destroy();
 			//this.collection.remove(id);
 			console.log('deleted user from collection', id);
 		}
 	});
-	return UserCollectionView;
+	return VenueSelectView;
 });

@@ -13,6 +13,7 @@ define([
 			this.password = localStorage.getItem('password');
 			$.ajax('/login/user', {type: 'POST', beforeSend: function(){}, headers:{username:this.email, password:this.password}, success: function(data){
 				localStorage.setItem('token', data.token);
+				localStorage.setItem('uid', data.uid);
 			}});
 		}
 	};

@@ -1,0 +1,35 @@
+<div class="row marketing">
+	<form role="form">
+		<div class="form-group">
+			<label for="eventRegisterName">Name</label>
+			<input type="text" class="form-control" id="eventRegisterName" placeholder="Name">
+		</div>
+		<div class="form-group">
+			<label for="eventRegisterType">Type</label>
+			<input type="text" class="form-control" id="eventRegisterType" placeholder="Type">
+		</div>
+		<div class="form-group">
+			<label for="eventRegisterStartTime">Start date and time</label>
+			<input type="datetime" class="form-control" id="eventRegisterStartTime" placeholder="YYYY-MM-DD HH:MM:SS">
+		</div>
+		<div class="form-group">
+			<label for="eventRegisterEndTime">End time</label>
+			<input type="datetime" class="form-control" id="eventRegisterEndTime" placeholder="YYYY-MM-DD HH:MM:SS">
+		</div>
+		<div class="form-group">
+			<label for="eventRegisterCapacity">Capacity</label>
+			<input type="number" class="form-control" id="eventRegisterCapacity" placeholder="Capacity">
+		</div>
+		<div class="form-group">
+			<label for="eventRegisterDescription">Description</label>
+			<textarea type="text" class="form-control" id="eventRegisterDescription" placeholder="Description"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="eventRegisterVenue">Venue</label>
+			<select class="form-control" id="eventRegisterVenue">
+				<%= venueSelect %>
+			</select>
+		</div>
+		<a id="eventRegisterSubmit" class="btn btn-default">Submit</a>
+	</form>
+</div>

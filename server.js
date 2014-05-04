@@ -63,6 +63,10 @@ publicRouter.route('/member')
 	.post(quorum.rest.member.create);
 publicRouter.route('/venown')
 	.post(quorum.rest.venown.create);
+publicRouter.route('/comsub')
+	.post(quorum.rest.comsub.create);
+publicRouter.route('/venue')
+	.get(quorum.rest.venue.read);
 publicRouter.route('/event')
 	.get(quorum.rest.event.query)
 
@@ -88,13 +92,17 @@ memberRouter.route('/member')
 memberRouter.route('/member/:id')
 	.get(quorum.rest.member.id.read)
 	.post(quorum.stub)
-	.put(quorum.updateMemberByEmail)
+	.put(quorum.rest.member.id.update)
 	.delete(quorum.stub);
 memberRouter.route('/venue')
-	.get(quorum.stub)
-	.post(quorum.stub)
+	.post(quorum.rest.venue.create)
 	.put(quorum.stub)
 	.delete(quorum.stub);
+memberRouter.route('/event')
+	.post(quorum.rest.event.create)
+	.put(quorum.stub)
+	.delete(quorum.stub);
+
 
 app.post('/login/user', quorum.auth.userToken)
 app.use('/api', publicRouter);
@@ -103,9 +111,9 @@ app.use('/api', memberRouter);
 app.use('/api', expressJwt({audience:'admin', secret: quorum.auth.secret}));
 app.use('/api', adminRouter);
 app.use('/api', function(req, res)
-{
-	res.json(404, {error:404});
-});
+	{
+		res.json(404, {error:404});
+	});
 
 // 404
 app.use(function(req, res)
@@ -114,6 +122,7 @@ app.use(function(req, res)
 });
 app.listen(port, host, function(){
 	console.log('Quorum server listening at:', host+':'+port);
+	console.log('I suggest however you access the page via localhost:'+port)
 });
 
 //On close
