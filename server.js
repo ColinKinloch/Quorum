@@ -94,6 +94,16 @@ memberRouter.route('/member/:id')
 	.post(quorum.stub)
 	.put(quorum.rest.member.id.update)
 	.delete(quorum.rest.member.id.delete);
+memberRouter.route('/comsub')
+	.get(quorum.rest.comsub.read);
+memberRouter.route('/comsub/:id')
+	.get(quorum.rest.comsub.id.read)
+	.delete(quorum.rest.comsub.id.delete);
+memberRouter.route('/venown')
+	.get(quorum.rest.venown.read);
+memberRouter.route('/venown/:id')
+	.get(quorum.rest.venown.id.read)
+	.delete(quorum.rest.venown.id.delete);
 memberRouter.route('/venue')
 	.post(quorum.rest.venue.create)
 	.put(quorum.stub)
@@ -108,8 +118,8 @@ app.post('/login/user', quorum.auth.userToken)
 app.use('/api', publicRouter);
 app.use('/api', expressJwt({audience:'member', secret: quorum.auth.secret}));
 app.use('/api', memberRouter);
-app.use('/api', expressJwt({audience:'admin', secret: quorum.auth.secret}));
-app.use('/api', adminRouter);
+//app.use('/api', expressJwt({audience:'admin', secret: quorum.auth.secret}));
+//app.use('/api', adminRouter);
 app.use('/api', function(req, res)
 	{
 		res.json(404, {error:404});

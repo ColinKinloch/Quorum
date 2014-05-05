@@ -14,6 +14,10 @@ define([
 		},*/
 		initialize: function(attrs) {
 			console.log('init venown');
+			if(attrs)
+			{
+				this.id = attrs.uid;
+			}
 		},
 		defaults: {
 			nameu: null,

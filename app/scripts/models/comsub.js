@@ -10,6 +10,10 @@ define([
 		urlRoot: '/api/comsub',
 		initialize: function(attrs) {
 			console.log('init comsub');
+			if(attrs)
+			{
+				this.id = attrs.uid;
+			}
 		},
 		defaults: {
 			nameu: null,
