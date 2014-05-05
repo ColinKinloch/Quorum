@@ -51,7 +51,7 @@ define([
 			comsub.fetch();
 		},
 		venown: function() {
-			menuSet('#admin-comsub-but');
+			menuSet('#admin-venown-but');
 			$(this.el).html(_.template(UserTemplate));
 			var venown = new VenownCollection();
 			var venownView = new VenownCollectionView({collection: venown, el: '#user-table'});
