@@ -1,9 +1,12 @@
+<div class="panel panel-default">
+<div class="panel-body">
 <form role="form">
 	<div class="form-group">
 		<label for="searchBox">Search</label>
 		<input type="search" class="form-control" id="searchBox" placeholder="Search">
 	</div>
-	<a class="btn btn-default">Search</a>
+	<a id="searchSubmit" class="btn btn-default">Search</a>
+	<hr/>
 	<div class="panel-group" id="accordion">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -20,15 +23,35 @@
 						<input type="text" class="form-control" id="searchType" placeholder="Type">
 					</div>
 					<div class="form-group">
-						<label for="searchType">Start date</label>
-						<input type="text" class="form-control" id="searchType" placeholder="Start">
+						<label for="searchStart">Start after</label>
+						<input type="text" class="form-control" id="searchType" placeholder="YYYY-MM-DD HH:MM:SS">
 					</div>
 					<div class="form-group">
-						<label for="searchType">End date</label>
-						<input type="text" class="form-control" id="searchType" placeholder="End">
+						<label for="searchEnd">End before</label>
+						<input type="text" class="form-control" id="searchType" placeholder="YYYY-MM-DD HH:MM:SS">
+					</div>
+					<div class="form-group">
+						<label for="searchLim">Results per page</label>
+						<select type="number" class="form-control" id="searchLim">
+							<option value="1">1</option>
+							<option selected="selected" value="5">5</option>
+							<option value="10">10</option>
+							<option value="20">20</option>
+							<option value="40">40</option>
+						</select>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </form>
+</div>
+</div>
+<hr/>
+<div id="search-results">
+	
+</div>
+<ul class="pager">
+	<li class="previous"><a id="searchPrevPage">&larr; Previous</a></li>
+	<li class="next"><a id="searchNextPage">Next &rarr;</a></li>
+</ul>

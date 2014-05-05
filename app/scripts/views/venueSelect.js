@@ -51,41 +51,6 @@ define([
 			this.collection.each(function(venue) {
 				that._venueViews.push(_.template(OptionTemplate, venue));
 			});
-		},
-		syncUsers: function() {
-			console.log('syncing!');
-			this.collection.forEach(function(model){
-				if(model.hasChanged())
-				{
-					model.save();
-					console.log('Saving changes to', model);
-				}
-			});
-		},
-		fetchUsers: function() {
-			console.log('fetching!');
-			this.collection.reset();
-			this.collection.fetch();
-		},
-		addUser: function(el) {
-			console.log('hello');
-			console.log(el, this.collection);
-			var attrs = {
-				email: $('#userInputEmail').val(),
-				namef: $('#userInputNameF').val(),
-				namel: $('#userInputNameL').val(),
-				pass: $('#userInputPass').val()
-			}
-			this.collection.add(new this.collection.model(attrs,{validate:true}));
-			console.log('added user to collection');
-			this.add();
-		},
-		deleteUser: function(e) {
-			var id = $(e.currentTarget).parent().parent().data('id');
-			Backbone.sync('delete', this.collection.get(id));
-			this.collection.get(id).destroy();
-			//this.collection.remove(id);
-			console.log('deleted user from collection', id);
 		}
 	});
 	return VenueSelectView;

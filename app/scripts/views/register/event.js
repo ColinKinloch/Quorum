@@ -48,7 +48,6 @@ define([
 			var newEvent = new EventModel(eventData, {url:'/api/event'});
 			console.log(newEvent);
 			Backbone.sync('create', newEvent);
-			Backbone.history.navigate('', {trigger: true});
 		}
 	});
 	return RegEventView;

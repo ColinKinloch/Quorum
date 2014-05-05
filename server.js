@@ -93,7 +93,7 @@ memberRouter.route('/member/:id')
 	.get(quorum.rest.member.id.read)
 	.post(quorum.stub)
 	.put(quorum.rest.member.id.update)
-	.delete(quorum.stub);
+	.delete(quorum.rest.member.id.delete);
 memberRouter.route('/venue')
 	.post(quorum.rest.venue.create)
 	.put(quorum.stub)

@@ -3,8 +3,7 @@
 define([
 	'jquery',
 	'backbone',
-	'routes/admin',
-	'collections/user',
+	'views/pages/home',
 	'views/table/usercollection',
 	'views/login',
 	'text!templates/search.ejs',
@@ -12,7 +11,7 @@ define([
 	'text!templates/pages/login.ejs',
 	'text!templates/pages/404.ejs',
 	'text!templates/pages/user.ejs'
-], function ($, Backbone, AdminRouter, UserCollection, UserCollectionView, LoginView, SearchTemplate, HomeTemplate, LoginTemplate, MissingTemplate, UserTemplate) {
+], function ($, Backbone, HomeView, UserCollectionView, LoginView, SearchTemplate, HomeTemplate, LoginTemplate, MissingTemplate, UserTemplate) {
 	'use strict';
 	
 	var menuSet = function(el)
@@ -31,8 +30,9 @@ define([
 		},
 		home: function() {
 			menuSet('#home-but');
-			$(this.el).html(_.template(HomeTemplate));
-			$("#search-container").html(_.template(SearchTemplate));
+			var homeView = new HomeView({el: '#main'});
+			//$(this.el).html(_.template(HomeTemplate));
+			//$("#search-container").html(_.template(SearchTemplate));
 			console.log('hi');
 		},
 		login: function() {
