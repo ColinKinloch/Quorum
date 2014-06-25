@@ -5,6 +5,8 @@ It's for paries, yo!
 
 A horribly rushed piece of uni group work I am glad to see the back of.
 
+A Node.js party system with a RESTful API.
+
 Installation
 ------------
 
