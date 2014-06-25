@@ -3,6 +3,8 @@ Quorum
 
 It's for paries, yo!
 
+A horribly rushed piece of uni group work I am glad to see the back of.
+
 Installation
 ------------
 
